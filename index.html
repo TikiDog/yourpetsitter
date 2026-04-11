@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wags & Whiskers | In-Home Pet Sitting & Dog Walking — Sacramento Area</title>
+  <meta name="description" content="In-home pet sitting and dog walking for dogs and cats in the greater Sacramento area. 100+ five-star reviews. Serving Citrus Heights, Roseville, Folsom, and surrounding communities." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    :root {
+      --orange: #EF9F27;
+      --orange-light: #FAEEDA;
+      --orange-dark: #633806;
+      --teal: #1D9E75;
+      --teal-light: #E1F5EE;
+      --teal-dark: #085041;
+      --coral: #D85A30;
+      --coral-light: #FAECE7;
+      --coral-dark: #712B13;
+      --purple: #7F77DD;
+      --purple-light: #EEEDFE;
+      --purple-dark: #3C3489;
+      --gray-bg: #f7f7f5;
+      --gray-border: #e5e5e2;
+      --text: #1a1a1a;
+      --text-muted: #5f5e5a;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      border-bottom: 1px solid var(--gray-border);
+      background: #fff;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-size: 20px; font-weight: 600; color: var(--coral); }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--text-muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--orange); color: var(--orange-dark); border: none; padding: 8px 18px; border-radius: 99px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 64px 32px; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    h1 { font-size: 42px; font-weight: 600; line-height: 1.2; margin-bottom: 16px; }
+    h2 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+    h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    p { font-size: 16px; line-height: 1.7; color: var(--text-muted); }
+    .section-intro { max-width: 520px; }
+
+    /* BADGE */
+    .badge { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 99px; display: inline-block; }
+    .badge-orange { background: var(--orange-light); color: var(--orange-dark); }
+    .badge-teal { background: var(--teal-light); color: var(--teal-dark); }
+    .badge-coral { background: var(--coral-light); color: var(--coral-dark); }
+    .badge-purple { background: var(--purple-light); color: var(--purple-dark); }
+
+    /* HERO */
+    .hero {
+      background: var(--orange-light);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+      min-height: 480px; padding: 64px 48px;
+    }
+    .hero h1 em { color: var(--coral); font-style: normal; }
+    .hero h1 span { color: var(--teal); }
+    .hero-sub { font-size: 17px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: var(--coral); color: #fff; border: none; padding: 12px 28px; border-radius: 99px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-secondary { background: transparent; color: var(--teal); border: 2px solid var(--teal); padding: 12px 28px; border-radius: 99px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+    .hero-badges { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .hero-visual { background: var(--teal-light); border-radius: var(--radius-lg); border: 1px solid var(--gray-border); padding: 48px 32px; text-align: center; font-size: 72px; letter-spacing: 8px; line-height: 1.4; }
+
+    /* SERVICES */
+    .services-section { background: var(--gray-bg); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 36px; }
+    .service-card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 24px 20px; }
+    .service-icon { width: 48px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+    .icon-orange { background: var(--orange-light); }
+    .icon-teal { background: var(--teal-light); }
+    .icon-coral { background: var(--coral-light); }
+    .icon-purple { background: var(--purple-light); }
+    .service-price { font-size: 22px; font-weight: 600; color: var(--coral); margin-top: 12px; }
+    .service-price span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+    .upcharge-box { margin-top: 28px; background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 20px 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .upcharge-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .upcharge-text { flex: 1; min-width: 180px; }
+    .upcharge-text strong { font-size: 15px; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
+    .upcharge-price { font-size: 22px; font-weight: 600; color: var(--teal); white-space: nowrap; }
+    .upcharge-price span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+
+    /* ABOUT */
+    .about-section { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
+    .about-left {}
+    .about-avatar { background: var(--teal-light); border-radius: var(--radius-lg); border: 1px solid var(--gray-border); min-height: 280px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; padding: 32px; }
+    .about-avatar .big-icon { font-size: 64px; }
+    .about-avatar p { font-size: 13px; color: var(--text-muted); }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 0; }
+    .stat-card { background: var(--gray-bg); border-radius: var(--radius-md); padding: 14px 12px; text-align: center; }
+    .stat-num { font-size: 24px; font-weight: 600; color: var(--coral); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .about-text p { margin-top: 14px; font-size: 15px; }
+    .about-text p:first-of-type { margin-top: 0; }
+    .house-rules { background: var(--orange-light); border-radius: var(--radius-lg); border: 1px solid var(--gray-border); padding: 20px; margin-top: 20px; }
+    .house-rules-title { font-size: 13px; font-weight: 600; color: var(--orange-dark); margin-bottom: 12px; }
+    .rule-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+    .rule-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; flex-shrink: 0; margin-top: 2px; }
+    .note-box { background: var(--coral-light); border-left: 3px solid var(--coral); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 14px 16px; margin-top: 16px; font-size: 14px; color: var(--coral-dark); line-height: 1.6; }
+    .about-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+
+    /* FAQ */
+    .faq-section { background: var(--gray-bg); }
+    .faq-grid { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .faq-card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 22px 20px; }
+    .faq-inner { display: flex; gap: 10px; align-items: flex-start; }
+    .faq-q { width: 28px; height: 28px; border-radius: 50%; background: var(--orange-light); color: var(--orange-dark); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .faq-card h3 { font-size: 15px; margin-bottom: 8px; }
+    .faq-card p { font-size: 14px; }
+
+    /* TESTIMONIALS */
+    .testimonials-section { background: var(--orange-light); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 36px; }
+    .testimonial-card { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 24px 20px; }
+    .stars { color: var(--orange); font-size: 14px; margin-bottom: 10px; letter-spacing: 2px; }
+    .testimonial-card blockquote { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
+    .reviewer { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    .reviewer-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; }
+    .r1 { background: var(--teal-light); color: var(--teal-dark); }
+    .r2 { background: var(--coral-light); color: var(--coral-dark); }
+    .r3 { background: var(--purple-light); color: var(--purple-dark); }
+    .reviewer-name { font-size: 14px; font-weight: 600; }
+    .reviewer-pet { font-size: 12px; color: var(--text-muted); }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 32px; }
+    .gallery-cell { border-radius: var(--radius-md); border: 1px solid var(--gray-border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; font-size: 28px; aspect-ratio: 1; }
+    .gallery-cell span { font-size: 11px; color: var(--text-muted); }
+    .gc1 { background: var(--teal-light); }
+    .gc2 { background: var(--orange-light); }
+    .gc3 { background: var(--coral-light); }
+    .gc4 { background: var(--purple-light); }
+
+    /* CONTACT */
+    .contact-section { background: var(--teal-light); display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start; }
+    .contact-form { background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 28px 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px; color: var(--text-muted); }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; border: 1px solid #ccc; border-radius: var(--radius-md); padding: 9px 12px; font-size: 14px; font-family: inherit; background: #fff; color: var(--text); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--teal); }
+    .form-group textarea { height: 80px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-divider { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); border-top: 1px solid var(--gray-border); padding-top: 16px; margin: 20px 0 16px; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--coral); cursor: pointer; flex-shrink: 0; }
+    .checkbox-item span { font-size: 14px; color: var(--text); }
+    .submit-btn { width: 100%; background: var(--coral); color: #fff; border: none; border-radius: 99px; padding: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 12px; }
+    .submit-btn:hover { background: #c04e26; }
+    .contact-detail { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px; }
+    .contact-detail-icon { width: 38px; height: 38px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; background: var(--teal-light); }
+    .contact-detail strong { font-size: 14px; font-weight: 600; display: block; margin-bottom: 2px; color: var(--text); }
+    .contact-detail span { font-size: 13px; color: var(--text-muted); }
+    .direct-email-box { margin-top: 24px; background: #fff; border: 1px solid var(--gray-border); border-radius: var(--radius-lg); padding: 20px; }
+
+    /* FOOTER */
+    footer { background: #2c2c2a; color: #d3d1c7; padding: 32px; text-align: center; }
+    .footer-logo { font-size: 18px; font-weight: 600; color: var(--orange); margin-bottom: 8px; }
+    footer p { font-size: 13px; color: #888780; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 40px 24px; }
+      .hero-visual { display: none; }
+      section { padding: 48px 20px; }
+      .about-section { grid-template-columns: 1fr; }
+      .contact-section { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 30px; }
+      h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Wags <span>&</span> Whiskers</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="section-label">Pet sitting & dog walking</div>
+    <h1>Your pets deserve <em>love</em> at <span>home</span></h1>
+    <p class="hero-sub">In-home pet care for dogs and cats — plus dog walks, plant watering, and mail collection — serving the greater Sacramento region.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Book a visit</a>
+      <a href="#services" class="btn-secondary">See services</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-orange">Dogs</span>
+      <span class="badge badge-teal">Cats</span>
+      <span class="badge badge-coral">Dog walks</span>
+      <span class="badge badge-orange">Plant watering</span>
+      <span class="badge badge-purple">Mail pickup</span>
+    </div>
+  </div>
+  <div class="hero-visual">🐶🐱<br>🐾🌿</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-intro">
+    <div class="section-label">What we offer</div>
+    <h2>Services & pricing</h2>
+    <p>All care happens right in your home — so your pet stays happy, comfortable, and stress-free.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon icon-coral">🐶</div>
+      <h3>Dog sitting</h3>
+      <p>Full-day in-home care while you're away. Feeding, playtime, cuddles, and companionship.</p>
+      <div class="service-price">$45 <span>/ day</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-purple">🐱</div>
+      <h3>Cat sitting</h3>
+      <p>Daily visits to feed, play, and love on your kitty — they never have to leave their territory.</p>
+      <div class="service-price">$25 <span>/ visit</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-teal">🦮</div>
+      <h3>Dog walking</h3>
+      <p>30 or 60-minute walks with GPS updates. Great for daily exercise and mental stimulation.</p>
+      <div class="service-price">$20 <span>/ 30 min</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon icon-orange">🌿</div>
+      <h3>Home add-ons</h3>
+      <p>Plant watering and mail collection included with any pet sitting visit — no extra charge.</p>
+      <div class="service-price">Free <span>with sitting</span></div>
+    </div>
+  </div>
+  <div class="upcharge-box">
+    <div class="upcharge-icon">🧹</div>
+    <div class="upcharge-text">
+      <strong>Litter box scooping</strong>
+      <p>Available as an add-on with any cat sitting visit. We'll keep things fresh and clean for your kitty every time.</p>
+    </div>
+    <div class="upcharge-price">+$5 <span>/ scoop</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-section">
+    <div class="about-left">
+      <div class="about-avatar">
+        <div class="big-icon">🐾</div>
+        <p>Sherry's photo here</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">5-star reviews</div></div>
+        <div class="stat-card"><div class="stat-num">12+</div><div class="stat-label">Years on Rover</div></div>
+        <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Bad reports</div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">About Sherry J.</div>
+      <h2>Calm vibes, real love, and a good sense of humor</h2>
+      <p>My family of three has been dog sitting on Rover since 2012 — with 100+ five-star reviews, zero bad reports, and zero incidents. I'm leaving Rover behind because of the unnecessary fees they charge both sitters and customers. My goal now is simple: quality, safe, secure, and <strong style="color:#1a1a1a;">affordable</strong> in-home pet care — without the middleman.</p>
+      <p>My son is grown, and I'm ready to dive in and share my love with your pet. I'm in my early 50s, I work from home, and I have the flexibility to bring my work with me and spend real, meaningful time with your animals. Your pet will never be an afterthought.</p>
+      <p>I promise to be responsible, caring, and communicative. I have pets of my own — my dogs are my family — so I truly understand what pet owners need and want. That sense of trust you're looking for? That's exactly what I'm here to provide.</p>
+      <p>I lead with a sense of humor, because dogs are all different — and let's be honest, poo-poo happens. I've given diabetes injections to both cats and dogs, and handled diaper changes for our older furry friends. Whatever your pet needs, I've probably been there.</p>
+      <p>You'll receive <strong style="color:#1a1a1a;">daily updates with photos</strong> so you can truly relax knowing your family member is safe and loved.</p>
+      <p style="font-size:14px;font-style:italic;">I am currently in the process of obtaining my business license and insurance — because peace of mind matters for both of us. I'm working on it and hope to have it wrapped up soon!</p>
+      <div class="house-rules">
+        <div class="house-rules-title">Our home, our standards</div>
+        <div class="rule-item"><div class="rule-dot">✓</div>Cage-free environment — your dog roams and relaxes like family</div>
+        <div class="rule-item"><div class="rule-dot">✓</div>Fully fenced front and backyard with extra side fencing to prevent escapes</div>
+        <div class="rule-item"><div class="rule-dot">✓</div>100% smoke-free and drug-free home</div>
+        <div class="rule-item"><div class="rule-dot">✓</div>No politics allowed — strictly a chill zone</div>
+        <div class="rule-item"><div class="rule-dot">✓</div>Daily photo and text updates to keep you in the loop</div>
+      </div>
+      <div class="note-box">
+        <strong>Please note:</strong> Your pet must be friendly with children, cats, and other dogs. We carefully screen each new guest to make sure everyone — two-legged and four-legged — has a great experience.
+      </div>
+      <div class="about-tags">
+        <span class="badge badge-teal">Rover since 2012</span>
+        <span class="badge badge-orange">100+ reviews</span>
+        <span class="badge badge-coral">Work from home</span>
+        <span class="badge badge-purple">Cage-free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-intro">
+    <div class="section-label">FAQ</div>
+    <h2>Questions? I've got answers.</h2>
+    <p>Everything you need to know before booking with Wags & Whiskers.</p>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>Do you require a meet & greet before the first booking?</h3><p>Yes — a meet and greet is required for all new clients. It gives me a chance to get to know your pet, learn their routine, and make sure we're a great fit for each other. There's no charge for this visit.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>What areas do you serve?</h3><p>I serve the greater Sacramento region, including Citrus Heights, Roseville, Folsom, El Dorado Hills, Auburn, Davis, Woodland, and surrounding communities. Not sure if I cover your area? Just reach out and ask!</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>Are you insured and licensed?</h3><p>I am currently in the process of obtaining my business license and pet sitter's insurance — because your peace of mind (and mine!) matters. I'll update this page as soon as that's complete. In the meantime, I bring 12+ years of verified Rover experience with a spotless record.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>What happens if my pet has a medical emergency?</h3><p>Your pet's safety is my top priority. I will contact you immediately and, if needed, transport your pet to your designated vet or the nearest emergency animal clinic. I ask that all clients provide vet contact information and an emergency contact when booking.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>How do I receive updates on my pet?</h3><p>You'll receive daily updates including photos so you can relax and enjoy your time away. I communicate via text or email — whichever you prefer. On occasion I've even FaceTimed with pet parents so they can see their fur baby live. Just ask! 😊</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>Do you care for pets with special needs or medications?</h3><p>Absolutely. I have experience administering diabetes injections to both cats and dogs, and I've handled diaper changes for senior pets. If your pet has special medical or mobility needs, let's talk — I'm here for them too.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>What is your cancellation policy?</h3><p>Life happens — I get it! I ask for at least 48 hours notice for cancellations when possible. For extended stays or holiday bookings, a little more notice is appreciated. I'll always do my best to work with you.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>How do I pay for services?</h3><p>Payment details will be confirmed at the time of booking. I accept Venmo, Zelle, and cash. Payment is due at the start of each service period. I'll always provide a clear summary of charges upfront — no surprises.</p></div></div></div>
+    <div class="faq-card"><div class="faq-inner"><div class="faq-q">Q</div><div><h3>Can I book recurring visits or ongoing dog walks?</h3><p>Yes! Recurring bookings are welcome and encouraged. Whether you need daily dog walks, weekly check-ins, or regular pet sitting, I'm happy to set up a consistent schedule that works for you and your pet.</p></div></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-intro">
+    <div class="section-label">What pet parents say</div>
+    <h2>Happy tails & purring reviews</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Our dog Max absolutely loves his visits. We came home to a happy pup, watered plants, and all our mail neatly collected. We'll never use anyone else!"</blockquote>
+      <div class="reviewer"><div class="reviewer-avatar r1">SL</div><div><div class="reviewer-name">Sarah L.</div><div class="reviewer-pet">Max the golden retriever</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"My two cats are notoriously shy, but they warmed up right away. So relieved to find someone who truly understands cats and doesn't stress them out."</blockquote>
+      <div class="reviewer"><div class="reviewer-avatar r2">MK</div><div><div class="reviewer-name">Marcus K.</div><div class="reviewer-pet">Mochi & Luna (cats)</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The daily walk updates and photos gave us such peace of mind on vacation. Highly recommend the dog walking service — Biscuit comes home exhausted and happy!"</blockquote>
+      <div class="reviewer"><div class="reviewer-avatar r3">JP</div><div><div class="reviewer-name">Jen P.</div><div class="reviewer-pet">Biscuit the beagle</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-intro">
+    <div class="section-label">Photo gallery</div>
+    <h2>Moments from our visits</h2>
+    <p>Add your own pet photos here — clients love seeing happy animals!</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-cell gc1">🐕<span>Dog sitting</span></div>
+    <div class="gallery-cell gc2">🐈<span>Cat visit</span></div>
+    <div class="gallery-cell gc3">🦮<span>Dog walk</span></div>
+    <div class="gallery-cell gc4">🌿<span>Plant care</span></div>
+    <div class="gallery-cell gc2">🐾<span>Playtime</span></div>
+    <div class="gallery-cell gc3">🐩<span>Grooming walk</span></div>
+    <div class="gallery-cell gc4">😺<span>Cuddle time</span></div>
+    <div class="gallery-cell gc1">📬<span>Mail pickup</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div>
+    <div class="section-label">Get in touch</div>
+    <h2>Request a booking</h2>
+    <p>Fill out the questionnaire and I'll get back to you within 24 hours to confirm availability and next steps.</p>
+    <br>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">📧</div>
+      <div><strong>Email</strong><span>hello@wagsandwhiskers.com</span></div>
+    </div>
+    <div class="direct-email-box">
+      <p style="font-size:14px;line-height:1.6;">Prefer to email directly? Send your details to <strong style="color:var(--teal);">hello@wagsandwhiskers.com</strong> and include your pet's name, breed, dates needed, and which service you're interested in.</p>
+    </div>
+  </div>
+  <div class="contact-form">
+    <h3 style="margin-bottom:4px;">Booking questionnaire</h3>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Tell me a little about you and your pet so I can best prepare for your visit.</p>
+    <div class="form-divider">About you</div>
+    <div class="form-row">
+      <div class="form-group"><label>Your name</label><input type="text" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Email address</label><input type="email" placeholder="you@email.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>City</label><input type="text" placeholder="Folsom, CA"></div>
+      <div class="form-group"><label>How did you hear about us?</label>
+        <select><option value="">Select one</option><option>Google search</option><option>Word of mouth</option><option>Social media</option><option>Nextdoor</option><option>Other</option></select>
+      </div>
+    </div>
+    <div class="form-divider">About your pet(s)</div>
+    <div class="form-row">
+      <div class="form-group"><label>Number of pets</label>
+        <select><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4+</option></select>
+      </div>
+      <div class="form-group"><label>Pet name(s)</label><input type="text" placeholder="Biscuit, Luna"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Breed(s)</label><input type="text" placeholder="Beagle, Tabby cat"></div>
+      <div class="form-group"><label>Age(s)</label><input type="text" placeholder="3 years, 5 years"></div>
+    </div>
+    <div class="form-divider">Services & dates</div>
+    <div class="form-group">
+      <label>Services interested in (select all that apply)</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox"><span>Dog sitting (in-home, full day)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Cat sitting (daily visits)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Litter box scooping (+$5 per scoop)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Dog walking (30 or 60 min)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Plant watering</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Mail collection</span></label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Start date</label><input type="date"></div>
+      <div class="form-group"><label>End date</label><input type="date"></div>
+    </div>
+    <div class="form-group"><label>Anything else I should know?</label><textarea placeholder="Special needs, routines, allergies, entry instructions..."></textarea></div>
+    <button class="submit-btn">Submit questionnaire</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Wags & Whiskers</div>
+  <p>In-home pet sitting & dog walking — Greater Sacramento Area</p>
+  <p style="margin-top:8px;">© 2026 Wags & Whiskers. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
