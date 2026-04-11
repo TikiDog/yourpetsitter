@@ -204,6 +204,7 @@
     <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#leave-review">Leave a review</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Book now</a>
 </nav>
@@ -342,6 +343,53 @@
   </div>
 </section>
 
+<!-- LEAVE A REVIEW -->
+<section id="leave-review" style="background: var(--teal-light);">
+  <div class="section-intro">
+    <div class="section-label">Leave a review</div>
+    <h2>How did we do?</h2>
+    <p>Had a great experience with Wags & Whiskers? I'd love to hear about it! Your feedback means the world and helps other pet parents feel confident booking with me.</p>
+  </div>
+  <div style="max-width: 600px; margin-top: 36px;">
+    <form action="https://formspree.io/f/sherry.graphicdesign@gmail.com" method="POST" style="background:#fff;border:1px solid var(--gray-border);border-radius:var(--radius-lg);padding:28px 24px;">
+      <input type="hidden" name="_subject" value="New Review — Wags & Whiskers">
+      <div class="form-row">
+        <div class="form-group"><label>Your name</label><input type="text" name="reviewer_name" placeholder="Jane Smith" required></div>
+        <div class="form-group"><label>Your pet's name</label><input type="text" name="pet_name" placeholder="Biscuit"></div>
+      </div>
+      <div class="form-group"><label>Service you used</label>
+        <select name="service">
+          <option value="">Select one</option>
+          <option>Dog sitting</option>
+          <option>Cat sitting</option>
+          <option>Home add-ons (plant watering / mail)</option>
+          <option>Multiple services</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Your rating</label>
+        <select name="rating">
+          <option value="">Select a rating</option>
+          <option>⭐⭐⭐⭐⭐ — 5 stars, absolutely loved it!</option>
+          <option>⭐⭐⭐⭐ — 4 stars, really great</option>
+          <option>⭐⭐⭐ — 3 stars, it was good</option>
+          <option>⭐⭐ — 2 stars, needs improvement</option>
+          <option>⭐ — 1 star</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Your review</label>
+        <textarea name="review" style="height:120px;" placeholder="Tell us about your experience — we'd love to hear what your pet thought too!" required></textarea>
+      </div>
+      <div class="form-group"><label>May I feature your review on this website?</label>
+        <select name="permission">
+          <option>Yes, you may use my review on the site</option>
+          <option>No, please keep it private</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn" style="background:var(--teal);">Submit my review</button>
+    </form>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials-section" id="testimonials">
   <div class="section-intro">
@@ -385,14 +433,11 @@
     <p>Add your own pet photos here — clients love seeing happy animals!</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-cell" style="padding:0;overflow:hidden;">
+
       <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/tyson.png" alt="Boxer relaxing on the couch" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);">
     </div>
     <div class="gallery-cell" style="padding:0;overflow:hidden;">
       <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/husky.png" alt="Husky enjoying the outdoors" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);">
-    </div>
-    <div class="gallery-cell" style="padding:0;overflow:hidden;">
-      <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/sherry_tater.png" alt="Sherry at the park with dogs" style="width:100%;height:100%;object-fit:cover;object-position:center bottom;border-radius:var(--radius-md);">
     </div>
     <div class="gallery-cell" style="padding:0;overflow:hidden;">
       <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/white_dog.png" alt="Fluffy white dog with tennis ball" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);">
