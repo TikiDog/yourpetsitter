@@ -51,7 +51,7 @@
     .btn-primary { background: var(--coral); color: #fff; border: none; padding: 10px 24px; border-radius: 99px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
     .btn-secondary { background: transparent; color: var(--teal); border: 2px solid var(--teal); padding: 10px 24px; border-radius: 99px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
     .hero-badges { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-    .hero-img { border-radius: var(--radius-lg); overflow: hidden; width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--gray-border); background: #fff; display: flex; align-items: center; justify-content: center; }
+    .hero-img { border-radius: var(--radius-lg); overflow: hidden; width: 320px; max-width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--gray-border); background: #fff; display: flex; align-items: center; justify-content: center; justify-self: center; }
     .hero-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     /* SERVICES */
@@ -74,8 +74,8 @@
 
     /* ABOUT */
     .about-section { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
-    .about-avatar { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gray-border); height: 300px; }
-    .about-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .about-avatar { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gray-border); max-height: 480px; }
+    .about-avatar img { width: 100%; height: auto; object-fit: contain; display: block; }
     .about-avatar-placeholder { background: var(--teal-light); height: 300px; border-radius: var(--radius-lg); border: 1px solid var(--gray-border); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
     .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0 0; }
     .stat-card { background: var(--gray-bg); border-radius: var(--radius-md); padding: 12px; text-align: center; }
