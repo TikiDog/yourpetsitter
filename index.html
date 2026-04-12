@@ -51,8 +51,8 @@
     .btn-primary { background: var(--coral); color: #fff; border: none; padding: 10px 24px; border-radius: 99px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
     .btn-secondary { background: transparent; color: var(--teal); border: 2px solid var(--teal); padding: 10px 24px; border-radius: 99px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
     .hero-badges { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-    .hero-img { border-radius: var(--radius-lg); overflow: hidden; height: 260px; border: 1px solid var(--gray-border); }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-img { border-radius: var(--radius-lg); overflow: hidden; width: 100%; aspect-ratio: 1 / 1; border: 1px solid var(--gray-border); background: #fff; display: flex; align-items: center; justify-content: center; }
+    .hero-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     /* SERVICES */
     .services-section { background: var(--gray-bg); }
@@ -119,7 +119,7 @@
     .polaroid:nth-child(even) { transform: rotate(1.5deg); }
     .polaroid:nth-child(3n) { transform: rotate(-0.5deg); }
     .polaroid:hover { transform: rotate(0deg) scale(1.04); box-shadow: 6px 8px 20px rgba(0,0,0,0.2); z-index: 2; position: relative; }
-    .polaroid img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .polaroid img { width: 100%; height: auto; display: block; }
     .polaroid-caption { text-align: center; font-size: 13px; color: #888; margin-top: 10px; font-family: 'Segoe UI', sans-serif; font-style: italic; }
     @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } .polaroid img { height: 140px; } }
 
@@ -152,17 +152,30 @@
     .footer-logo { font-size: 17px; font-weight: 600; color: var(--orange); margin-bottom: 6px; }
     footer p { font-size: 13px; color: #888780; }
 
-    /* RESPONSIVE */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s ease; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; flex-direction: column; background: #fff; border-top: 1px solid var(--gray-border); padding: 12px 20px 20px; gap: 4px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 15px; color: var(--text-muted); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--gray-border); }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--coral); }
     @media (max-width: 768px) {
       nav { padding: 10px 16px; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; padding: 32px 20px; }
       .hero-img { display: none; }
       section { padding: 48px 20px; }
       .about-section { grid-template-columns: 1fr; }
       .contact-section { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .polaroid img { height: 140px; }
       h1 { font-size: 28px; }
       h2 { font-size: 22px; }
+      .gallery-section p { white-space: normal; }
     }
   </style>
 </head>
@@ -180,7 +193,19 @@
     <li><a href="#leave-review">Leave A Review</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Inquire Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#leave-review" onclick="closeMenu()">Leave A Review</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -200,7 +225,7 @@
     </div>
   </div>
   <div class="hero-img">
-    <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/hero.png" alt="Sherry with her dogs">
+    <img src="https://raw.githubusercontent.com/TikiDog/yourpetsitter/main/IMG_3308.png" alt="Sherry with her dogs">
   </div>
 </section>
 
@@ -354,7 +379,7 @@
   <div class="section-intro">
     <div class="section-label">Photo Gallery</div>
     <h2>Moments From Our Visits</h2>
-    <p>A peek into the fun, love, and tail wags happening every day at Wags & Whiskers.</p>
+    <p style="white-space: nowrap;">A peek into the fun, love, and tail wags happening every day at Wags & Whiskers.</p>
   </div>
   <div class="gallery-grid">
     <div class="polaroid">
@@ -494,5 +519,17 @@
   <p style="margin-top:6px;">© 2026 Wags & Whiskers. All rights reserved.</p>
 </footer>
 
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+</script>
 </body>
 </html>
