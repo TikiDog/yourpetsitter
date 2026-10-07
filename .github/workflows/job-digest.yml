@@ -1,0 +1,53 @@
+name: Daily job digest
+
+on:
+  schedule:
+    # 14:17 UTC = 7:17 AM in Sacramento during daylight time (6:17 AM in winter).
+    - cron: "17 14 * * *"
+  workflow_dispatch: # adds a "Run workflow" button for testing
+
+permissions:
+  contents: read
+  issues: write # used only when no email login is set up (see README)
+
+concurrency:
+  group: job-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: job-digest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Remembers which jobs were already emailed, so each one is sent once.
+      # Kept in the Actions cache, not committed, so listings never land in the repo.
+      - uses: actions/cache@v4
+        with:
+          path: job-digest/state
+          key: job-digest-seen-${{ github.run_id }}
+          restore-keys: job-digest-seen-
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+
+      - name: Build and send digest
+        run: python -m jobdigest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
