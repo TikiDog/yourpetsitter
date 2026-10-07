@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import os
+import re
 import smtplib
 import ssl
 from datetime import datetime, timezone
@@ -158,6 +159,40 @@ def build_text(sections: list[tuple[str, list[Job]]], date_label: str,
     if not any(jobs for _, jobs in sections):
         lines += ["No new matching jobs since the last digest.", ""]
     lines += ["--", *source_notes]
+    return "\n".join(lines)
+
+
+def _md(text: str) -> str:
+    """Escape characters that Markdown would treat as formatting."""
+    return re.sub(r"([\\`*_\[\]<>|#])", r"\\\1", text or "")
+
+
+def build_markdown(sections: list[tuple[str, list[Job]]], date_label: str,
+                   source_notes: list[str], now: datetime) -> str:
+    total = sum(len(j) for _, j in sections)
+    lines = [f"**{date_label}** · {total} new {'job' if total == 1 else 'jobs'}", ""]
+    for heading, jobs in sections:
+        if not jobs:
+            continue
+        lines += [f"## {heading} ({len(jobs)})", ""]
+        for j in jobs:
+            link = best_link(j)
+            title = f"[{_md(j.title)}]({link.url})" if link else _md(j.title)
+            badge = " · ✅ Company site" if is_company_page(j) else ""
+            meta = " · ".join(p for p in (_md(j.company or "Company not listed"),
+                                          _md(j.location), _ago(j.posted_at, now)) if p)
+            lines.append(f"### {title}{badge}")
+            lines.append(meta + (f"  \n{_md(j.salary)}" if j.salary else ""))
+            if j.description:
+                lines += ["", f"> {_md(_snippet(j.description))}"]
+            others = _other_links(j, link)
+            if others:
+                lines += ["", "Also listed on: " + ", ".join(
+                    f"[{_md(l.label)}]({l.url})" for l in others)]
+            lines.append("")
+    if not total:
+        lines += ["No new matching jobs since the last digest.", ""]
+    lines += ["---", "<sub>" + "<br>".join(_md(n) for n in source_notes) + "</sub>"]
     return "\n".join(lines)
 
 

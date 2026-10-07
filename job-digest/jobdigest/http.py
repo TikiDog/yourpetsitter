@@ -37,3 +37,16 @@ def get(url: str, params: dict | None = None, headers: dict | None = None,
 def get_json(url: str, params: dict | None = None, headers: dict | None = None,
              **kwargs) -> dict:
     return json.loads(get(url, params, headers, **kwargs))
+
+
+def send_json(method: str, url: str, payload: dict | None = None,
+              headers: dict | None = None, timeout: int = 30) -> dict:
+    """POST/PATCH a JSON body and return the JSON reply (no retries)."""
+    data = json.dumps(payload).encode() if payload is not None else None
+    req_headers = {"User-Agent": USER_AGENT, "Accept": "application/json",
+                   "Content-Type": "application/json"}
+    req_headers.update(headers or {})
+    req = urllib.request.Request(url, data=data, headers=req_headers, method=method)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        body = resp.read()
+    return json.loads(body) if body else {}

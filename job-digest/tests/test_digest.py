@@ -182,6 +182,8 @@ def fake_get(url, params=None, headers=None, **kw):
         body = REMOTIVE
     elif "weworkremotely" in url:
         return WWR.encode()
+    elif "api.github.com" in url:
+        return json.dumps([{"number": 5, "title": "yesterday"}]).encode()
     elif "usajobs" in url:
         body = USAJOBS if params["Keyword"] == "graphic designer" and "LocationName" in params \
             else {"SearchResult": {"SearchResultItems": []}}
@@ -238,6 +240,28 @@ class EndToEnd(unittest.TestCase):
             self.assertIn("JSearch: skipped", text)
             self.assertIn("Adzuna: skipped", text)
             self.assertIn("UI Designer", text)
+
+    def test_without_smtp_posts_github_issue_and_closes_old_one(self):
+        env = {k: v for k, v in ENV.items() if not k.startswith("SMTP")}
+        env.update(GITHUB_TOKEN="t", GITHUB_REPOSITORY="TikiDog/yourpetsitter",
+                   GITHUB_REPOSITORY_OWNER="TikiDog")
+        calls = []
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.dict(os.environ, env, clear=True), \
+                mock.patch("jobdigest.http.get", side_effect=fake_get), \
+                mock.patch("jobdigest.http.send_json",
+                           side_effect=lambda *a, **k: calls.append(a[:3]) or {"html_url": "u"}):
+            self.assertEqual(digest.run(["--state", f"{d}/seen.json"]), 0)
+            self.assertTrue(json.loads(Path(f"{d}/seen.json").read_text()))
+        (m1, u1, issue), (m2, u2, close) = calls
+        self.assertEqual((m1, u1), ("POST", "https://api.github.com/repos/TikiDog/yourpetsitter/issues"))
+        self.assertEqual(issue["assignees"], ["TikiDog"])
+        self.assertIn("4 new jobs", issue["title"])
+        self.assertIn("### [Production Artist](https://penguinrandomhouse.wd5.myworkdayjobs.com/job/1)",
+                      issue["body"])
+        self.assertIn("Company site", issue["body"])
+        self.assertEqual((m2, close["state"]), ("PATCH", "closed"))
+        self.assertTrue(u2.endswith("/issues/5"))
 
 
 if __name__ == "__main__":

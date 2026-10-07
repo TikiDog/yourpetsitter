@@ -20,6 +20,13 @@ them from Google for Jobs.
 | We Work Remotely | Remote design jobs (RSS) | No |
 | USAJOBS | Federal jobs near Sacramento and remote federal jobs | Yes, free |
 
+**Delivery:** if the Gmail login (Step 1 below) is set up, the digest
+arrives as a formatted email. Until then, the app posts each day's digest
+as a GitHub **issue** in this repo, assigned to you. GitHub emails you
+about it, and yesterday's digest issue closes automatically. The repo is
+public, so those issues are too. Job listings are public anyway, but adding
+the Gmail login moves delivery to your private inbox.
+
 Every source is optional. If a key is missing, the digest skips that source,
 runs the rest, and says so at the bottom of the email. Remotive and We Work
 Remotely work without keys, so the app runs as soon as email is set up.

@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: write # used only when no email login is set up (see README)
 
 concurrency:
   group: job-digest
@@ -41,6 +42,7 @@ jobs:
       - name: Build and send digest
         run: python -m jobdigest
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}

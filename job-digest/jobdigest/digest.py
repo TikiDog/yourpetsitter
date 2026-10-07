@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import emailer
+from . import emailer, github_issue
 from .dedupe import dedupe, normalize_company, normalize_title
 from .models import Job
 from .sources import SOURCES, MissingKey
@@ -176,9 +177,20 @@ def run(argv: list[str] | None = None) -> int:
         print(text_body)
         return 0
 
+    # Email when an SMTP login is set up; otherwise post a GitHub issue,
+    # which GitHub emails to the repo owner.
     if jobs or cfg.get("send_when_empty", True):
-        emailer.send(subject, html_body, text_body)
-        print(f"Email sent: {subject}", file=sys.stderr)
+        if os.environ.get("SMTP_USER") and os.environ.get("SMTP_PASSWORD"):
+            emailer.send(subject, html_body, text_body)
+            print(f"Email sent: {subject}", file=sys.stderr)
+        elif github_issue.available():
+            md = emailer.build_markdown(sections, date_label, notes, now)
+            url = github_issue.post(subject, md)
+            print(f"GitHub issue posted: {url}", file=sys.stderr)
+        else:
+            print("Nowhere to deliver: set SMTP_USER and SMTP_PASSWORD "
+                  "(or run inside GitHub Actions).", file=sys.stderr)
+            return 1
 
     # 6. Remember what was sent (only after the email went out).
     stamp = now.isoformat()
