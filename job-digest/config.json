@@ -1,0 +1,32 @@
+{
+  "keywords": [
+    "InDesign",
+    "production artist",
+    "graphic designer",
+    "UI designer",
+    "ePub"
+  ],
+
+  "local_search": {
+    "label": "Sacramento, CA",
+    "city": "Sacramento",
+    "state": "CA",
+    "state_name": "California",
+    "radius_miles": 25
+  },
+
+  "include_remote_us": true,
+
+  "lookback_hours": 24,
+
+  "email_subject": "Job digest: {count} new {jobs} for {date}",
+  "send_when_empty": true,
+
+  "sources": {
+    "jsearch": true,
+    "adzuna": true,
+    "remotive": true,
+    "weworkremotely": true,
+    "usajobs": true
+  }
+}
